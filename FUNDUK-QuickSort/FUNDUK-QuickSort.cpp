@@ -74,7 +74,7 @@ struct NLM {
 
 	std::string toString() {
 		std::string output;
-		output = lastName + " " + firstName + middleName;
+		output = lastName + " " + firstName + " "+ middleName;
 		return output;
 	}
 
@@ -112,7 +112,7 @@ struct taskKey {
 
 	std::string toString() {
 		std::string output;
-		output = phone.toString() + " - " + nlm.toString() + "UUID:" + std::to_string(UUID);
+		output = phone.toString() + " - " + nlm.toString() + "  UUID:" + std::to_string(UUID);
 		return output;
 	}
 
@@ -218,7 +218,6 @@ int main()
 	while (true) {//load file 
 		std::cout << "Enter the file path: ";
 		// std::getline(std::cin, filePath);
-
 		std::cout << "\n";
 		std::cin.clear();
 		//check if file exists
@@ -243,7 +242,7 @@ int main()
 	size_t fileReadCounter = 0;
 	bool isCorrect = true;
 	size_t totalLineCount = std::count(std::istreambuf_iterator<char>(dataFile), std::istreambuf_iterator<char>(), '\n');
-	totalLineCount = 10000;
+	//totalLineCount = 100000;
 	dataFile.clear();
 	dataFile.seekg(0);//return to the begining
 
@@ -296,11 +295,11 @@ int main()
 	outFile << "Sorting with qSort...\n";
 	std::cout << "sorting using qSort:\n";
 	auto start = std::chrono::high_resolution_clock::now();
-	selectionsSort(arr1, totalLineCount, true);
+	quickSort(arr1, totalLineCount, true);
 	auto elapsed = std::chrono::high_resolution_clock::now() - start;
 	long long milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
 		elapsed).count();
-	outFile << "took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n ";
+	outFile << "took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n";
 	std::cout << " done! took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n";
 
 	//insertions sort on random data
@@ -319,7 +318,7 @@ int main()
 	outFile << "Sorting with qSort on already sorted array ...\n";
 	std::cout << "Sorting with qSort on already sorted array ...\n";
 	 start = std::chrono::high_resolution_clock::now();
-	selectionsSort(arr1, totalLineCount, true);
+	 quickSort(arr1, totalLineCount, true);
 	 elapsed = std::chrono::high_resolution_clock::now() - start;
 	milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
 		elapsed).count();
@@ -354,11 +353,11 @@ int main()
 	outFile << "Sorting with qSort on reverse-sorted array ...\n";
 	std::cout << "Sorting with qSort on reverse-sorted  sorted array ...\n";
 	start = std::chrono::high_resolution_clock::now();
-	selectionsSort(arr1, totalLineCount, true);
+	quickSort(arr1, totalLineCount, true);
 	elapsed = std::chrono::high_resolution_clock::now() - start;
 	milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
 		elapsed).count();
-	outFile << "took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n sorted:\n";
+	outFile << "took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n";
 	std::cout << " done! took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n";
 
 	//insertions sort on random data
@@ -370,8 +369,8 @@ int main()
 	elapsed = std::chrono::high_resolution_clock::now() - start;
 	milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
 		elapsed).count();
-	outFile << "took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n sorted:\n";
-	std::cout << " done! took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n sorted:\n";
+	outFile << "took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n";
+	std::cout << " done! took: " << milliseconds << "ms  (" << ((double)totalLineCount / milliseconds) << ")elements per ms\n";
 	
 	
 	outFile << " Qsort out:\n";
